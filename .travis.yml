@@ -809,13 +809,13 @@ install:
   - git submodule init libs/bind
   - git submodule update # no --jobs 3 on non-amd64
   - cp -r $TRAVIS_BUILD_DIR/* libs/smart_ptr
-  - perf stat ./bootstrap.sh
-  - perf stat ./b2 headers
+  - sudo perf stat ./bootstrap.sh
+  - sudo perf stat ./b2 headers
 
 script:
   - |-
     echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
-  - perf stat ./b2 -j3 libs/smart_ptr/test toolset=$TOOLSET cxxstd=$CXXSTD variant=debug,release ${UBSAN:+cxxflags=-fsanitize=undefined cxxflags=-fno-sanitize-recover=undefined linkflags=-fsanitize=undefined debug-symbols=on} ${LINKFLAGS:+linkflags=$LINKFLAGS}
+  - sudo perf stat ./b2 -j3 libs/smart_ptr/test toolset=$TOOLSET cxxstd=$CXXSTD variant=debug,release ${UBSAN:+cxxflags=-fsanitize=undefined cxxflags=-fno-sanitize-recover=undefined linkflags=-fsanitize=undefined debug-symbols=on} ${LINKFLAGS:+linkflags=$LINKFLAGS}
 
 notifications:
   email:
