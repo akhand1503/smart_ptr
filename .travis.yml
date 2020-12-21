@@ -809,10 +809,10 @@ install:
   - git submodule init tools/cmake
   - git submodule init libs/preprocessor
   - git submodule init libs/bind
-  - sudo perf -d stat git submodule update # no --jobs 3 on non-amd64
+  - sudo perf stat -d git submodule update # no --jobs 3 on non-amd64
   - cp -r $TRAVIS_BUILD_DIR/* libs/smart_ptr
-  - sudo perf -d stat ./bootstrap.sh
-  - sudo perf -d stat ./b2 headers
+  - sudo perf stat -d./bootstrap.sh
+  - sudo perf stat -d ./b2 headers
 
 script:
   - |-
