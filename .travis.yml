@@ -780,7 +780,13 @@ matrix:
 
 install:
   - lscpu
-  - uname -r
+  - uname -a
+  - sudo apt install dmidecode
+  - sudo dmidecode --type 17 | more
+  - sudo apt install hwinfo
+  - hwinfo --short
+  - sudo apt install inxi
+  - inxi -Fx
   #- sudo apt-get -y install linux-tools-5.4.0-54-generic linux-tools-generic
   - sudo apt-get update && sudo apt-get install linux-tools-$(uname -r) linux-tools-generic
   - perf --help
