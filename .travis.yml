@@ -790,7 +790,9 @@ install:
   #- sudo apt-get -y install linux-tools-5.4.0-54-generic linux-tools-generic
   - sudo apt-get update && sudo apt-get install linux-tools-$(uname -r) linux-tools-generic
   - perf --help
-  #- sudo sh -c 'echo -1 >/proc/sys/kernel/perf_event_paranoid'
+  - sudo -i
+  - echo -1 >/proc/sys/kernel/perf_event_paranoid
+  - exit
   #- sudo sysctl -w kernel.perf_event_paranoid=-1
   - BOOST_BRANCH=develop && [ "$TRAVIS_BRANCH" == "master" ] && BOOST_BRANCH=master || true
   - cd ..
